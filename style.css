@@ -159,3 +159,32 @@ footer {
     margin-top: 30px;
     padding: 28px 20px;
 }
+
+/* Technology stack badges */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(170, 200, 255, 0.12);
+    color: #a8c8ff;
+    font-size: 0.85em;
+    border-radius: 6px;
+    border: 1px solid rgba(170, 200, 255, 0.25);
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+    background: rgba(170, 200, 255, 0.22);
+    border-color: rgba(170, 200, 255, 0.45);
+    box-shadow: 0 2px 8px rgba(170, 200, 255, 0.15);
+}
