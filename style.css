@@ -1,10 +1,50 @@
-body {
-    background: linear-gradient(to right, grey, orange);
-    color: white;
+:root{
+    --bg-mx: 50%;
+    --bg-my: 50%;
+}
+
+body{
+    background-color: #071026; /* deep navy */
+    color: #e6eef8;
     font-family: Georgia, sans-serif;
     margin: 0;
     padding: 0;
+    position: relative;
+    overflow-x: hidden;
 }
+
+/* geometric accent layer that parallax-moves with mouse */
+body::before{
+    content: "";
+    position: fixed;
+    left: -10%;
+    top: -20%;
+    width: 140%;
+    height: 140%;
+    z-index: -1; /* keep geometric layer behind canvas */
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+        linear-gradient(120deg, rgba(255,140,0,0.04), rgba(0,200,255,0.03)),
+        radial-gradient(circle at var(--bg-mx) var(--bg-my), rgba(255,255,255,0.03), transparent 30%);
+    clip-path: polygon(0 0, 100% 0, 84% 100%, 0% 100%);
+    transform: translate3d(calc((var(--bg-mx) - 50%) * 0.04), calc((var(--bg-my) - 50%) * 0.04), 0);
+}
+
+/* canvas layer for particle/line network */
+#bg-canvas{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* above geometric layer (-1) but below content (1) */
+    pointer-events: none;
+    display: block;
+}
+
+/* ensure content stacks above the geometric layer */
+header, section, footer { position: relative; z-index: 1; }
 
 header, footer, section {
     padding: 20px;
@@ -86,4 +126,36 @@ header img {
         width: 120px;
         height: 120px;
     }
+}
+
+/* Section panels for clarity */
+section {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    margin: 22px auto;
+    padding: 28px;
+    max-width: 1000px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+    text-align: left;
+}
+
+section h2 { 
+    margin-top: 0;
+}
+
+/* Slightly emphasize the projects container */
+.project-cards {
+    align-items: stretch;
+}
+
+/* subtle accent lines for hierarchy */
+header h1 {
+    letter-spacing: 0.6px;
+}
+
+/* make footer visually separated */
+footer {
+    margin-top: 30px;
+    padding: 28px 20px;
 }
